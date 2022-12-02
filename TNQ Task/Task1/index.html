@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <textarea id="input" style="height: 200px; width: 500px"></textarea
+    ><br /><br />
+    <button
+      type="button"
+      id="generate"
+      style="
+        background-color: crimson;
+        width: 100px;
+        height: 30px;
+        color: aliceblue;
+        border-radius: 15px;
+      "
+    >
+      generate</button
+    ><br /><br />
+    <textarea id="output" style="height: 200px; width: 500px"></textarea>
+    <br /><br />
+
+    <script>
+      let generate = document.getElementById("generate");
+      let output = document.getElementById("output");
+      let input = document.getElementById("input");
+
+      generate.addEventListener("click", e => {
+        let inp1 = input.value;
+        let inp2 = JSON.parse(inp1);
+        let arr = [];
+        inp2.map(m => {
+          arr.push(m.id);
+        });
+        console.log(arr);
+        console.log(Array.from(new Set(arr)));
+        if (arr.length === Array.from(new Set(arr)).length) {
+          inp2.map(val => {
+            output.innerHTML += `<div class="root" data-id=${val.id}>
+                  <span class="username"> ${val.username}</span>
+                  <span class="video_name"> ${val.video_name}</span>
+                  <span class="username"> ${val.username}</span>
+                  <span class="additional_Details"><span class="type">${val.action} </span></span>
+                  </div>`;
+          });
+        } else {
+          console.log(false);
+          alert("id is duplicated");
+        }
+      });
+    </script>
+  </body>
+</html>
